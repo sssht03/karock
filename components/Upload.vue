@@ -9,13 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+const router = useRouter();
+const { $uploadData } = useNuxtApp();
 
 const isUploading = ref(false);
 const uploadError = ref(false);
 const giftStore = useGiftStore();
-const router = useRouter();
-const { $uploadData } = useNuxtApp();
 
 onMounted(() => {
   startUpload();

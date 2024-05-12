@@ -25,15 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+const router = useRouter();
+const giftStore = useGiftStore();
 
 const title = ref("");
 const fromName = ref("");
 const toName = ref("");
 const message = ref("");
-
-const router = useRouter();
-const giftStore = useGiftStore();
 
 function submitForm() {
   giftStore.setMessages(

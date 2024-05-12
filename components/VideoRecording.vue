@@ -21,8 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
+const giftStore = useGiftStore();
+const router = useRouter();
 
 const count = ref(3);
 
@@ -31,8 +31,6 @@ const recordedVideoUrl = ref<string | null>(null);
 const isRecording = ref(false);
 let mediaRecorder: MediaRecorder | null = null;
 let recordedChunks: Blob[] = [];
-
-const giftStore = useGiftStore();
 
 onMounted(async () => {
   try {
@@ -100,7 +98,6 @@ function recordAgain() {
   startRecording();
 }
 
-const router = useRouter();
 const goToNextStep = () => {
   router.push("#message-entry");
 };

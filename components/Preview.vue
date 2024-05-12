@@ -11,10 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
-
-const router = useRouter();
 const giftStore = useGiftStore();
+const router = useRouter();
 
 function goToNextStep() {
   router.push("#upload");

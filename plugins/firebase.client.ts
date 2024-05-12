@@ -45,19 +45,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     message: string
   ): Promise<void> => {
     try {
-      console.log('upload')
-      console.log(documentId)
-      console.log(videoBlob)
-      console.log(title)
-      console.log(fromName)
-      console.log(toName)
-      console.log(message)
       // Storageに動画をアップロード
       const fileRef = storageRef(storage, `videos/${documentId}`);
-      console.log(fileRef)
       const snapshot = await uploadBytes(fileRef, videoBlob);
       const videoUrl: string = await getDownloadURL(snapshot.ref);
-      console.log(videoUrl)
 
       // Firestoreにデータをセット
       const docRef = doc(db, "gifts", documentId);

@@ -6,7 +6,7 @@
 
 <script setup>
 import { ref, computed, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import AppDescription from "~/components/AppDescription.vue";
 import VideoInstructions from "~/components/VideoInstructions.vue";
 import VideoRecording from "~/components/VideoRecording.vue";
