@@ -37,7 +37,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const storage: FirebaseStorage = getStorage(app);
 
   const uploadData = async (
-    blob: Blob,
+    videoFile: Blob,
     giftTitle: string,
     fromName: string,
     toName: string,
@@ -48,7 +48,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     try {
       // Storageに動画をアップロード
       const fileRef = storageRef(storage, `videos/${documentId}`);
-      const snapshot = await uploadBytes(fileRef, blob);
+      const snapshot = await uploadBytes(fileRef, videoFile);
       const videoUrl: string = await getDownloadURL(snapshot.ref);
 
       // Firestoreにデータをセット
