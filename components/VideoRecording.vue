@@ -62,7 +62,6 @@ function setupMediaRecorder(stream: MediaStream) {
     const blob = new Blob(recordedChunks, { type: "video/webm" });
     recordedVideoUrl.value = URL.createObjectURL(blob);
     giftStore.setVideo(blob, recordedVideoUrl.value);
-    console.log("Recording stopped, video available at:", recordedVideoUrl);
     isRecording.value = false; // Ensure recording state is updated when stopped
   };
 }

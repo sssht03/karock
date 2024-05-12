@@ -1,7 +1,7 @@
 <template>
   <div id="completion">
     <h1>Completion</h1>
-    <button @click="goToNext">Next</button>
+    <p>もう一度かざしてみてね！</p>
   </div>
 </template>
 
