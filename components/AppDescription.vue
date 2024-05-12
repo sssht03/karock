@@ -1,7 +1,8 @@
 <template>
   <div id="app-desctiption">
-    <h1>App Description</h1>
-    <button @click="goToNext">Next</button>
+    <h1>アプリの説明</h1>
+    <p>このアプリは〜〜〜〜です</p>
+    <button @click="goToNextStep">次へ</button>
   </div>
 </template>
 
@@ -10,7 +11,7 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 
-const goToNext = () => {
+const goToNextStep = () => {
   router.push("/#video-instructions");
 };
 </script>

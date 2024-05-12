@@ -1,16 +1,18 @@
 <template>
   <div id="video-instructions">
-    <h1>Video Instructions</h1>
-    <button @click="goToNext">Next</button>
+    <h1>動画を撮影するよ！</h1>
+    <p>注意事項</p>
+    <p>10秒とるよ！</p>
+    <button @click="goToNextStep">撮影に進む</button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 
-const router = useRouter();
+const router = useRouter()
 
-const goToNext = () => {
+const goToNextStep = () => {
   router.push("/#video-recording");
 };
 </script>
