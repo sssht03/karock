@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "site": "karock-c4638",
+    "cleanUrls": true,
+    "public": ".output/public",
+    "rewrites": [{ "source": "**", "function": "server" }],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
