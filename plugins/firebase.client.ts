@@ -7,6 +7,7 @@ import {
   getDoc,
   getFirestore,
   setDoc,
+  type DocumentData,
 } from "firebase/firestore";
 
 import {
@@ -66,14 +67,15 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   };
 
-  const getStoreData = async (documentId: string) => {
+  const getStoreData = async (
+    documentId: string
+  ): Promise<DocumentData | null> => {
     const docRef = doc(db, "gifts", documentId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       return docSnap.data();
     } else {
-      alert("データが存在しません");
       return null;
     }
   };

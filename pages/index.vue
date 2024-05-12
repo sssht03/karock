@@ -14,6 +14,7 @@ import MessageEntry from "~/components/MessageEntry.vue";
 import Preview from "~/components/Preview.vue";
 import Upload from "~/components/Upload.vue";
 import Completion from "~/components/Completion.vue";
+import Viewer from "~/components/Viewer.vue";
 
 const route = useRoute();
 const hash = ref("");
@@ -26,6 +27,7 @@ const componentsMap = {
   "#preview": Preview,
   "#upload": Upload,
   "#completion": Completion,
+  "#viewer": Viewer
 };
 
 const currentComponent = computed(() => {
