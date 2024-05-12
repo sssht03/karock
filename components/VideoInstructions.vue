@@ -13,6 +13,6 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 
 const goToNextStep = () => {
-  router.push("/#video-recording");
+  router.push("#video-recording");
 };
 </script>

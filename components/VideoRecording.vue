@@ -32,6 +32,8 @@ const isRecording = ref(false);
 let mediaRecorder: MediaRecorder | null = null;
 let recordedChunks: Blob[] = [];
 
+const giftStore = useGiftStore();
+
 onMounted(async () => {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
@@ -61,6 +63,7 @@ function setupMediaRecorder(stream: MediaStream) {
   mediaRecorder.onstop = () => {
     const blob = new Blob(recordedChunks, { type: "video/webm" });
     recordedVideoUrl.value = URL.createObjectURL(blob);
+    giftStore.setVideo(blob, recordedVideoUrl.value);
     console.log("Recording stopped, video available at:", recordedVideoUrl);
     isRecording.value = false; // Ensure recording state is updated when stopped
   };
@@ -68,7 +71,6 @@ function setupMediaRecorder(stream: MediaStream) {
 
 function startCountdown() {
   const timer = setInterval(() => {
-    console.log(count.value);
     if (count.value > 0) {
       count.value--;
     } else if (mediaRecorder && mediaRecorder.state === "inactive") {
@@ -88,17 +90,18 @@ function startRecording() {
       if (mediaRecorder!.state === "recording") {
         mediaRecorder!.stop();
       }
-    }, 3000); // Stop recording after 10 seconds
+    }, 1000); // Stop recording after 10 seconds
   }
 }
 
 function recordAgain() {
   recordedVideoUrl.value = "";
+  giftStore.setVideo(null, "");
   startRecording();
 }
 
 const router = useRouter();
 const goToNextStep = () => {
-  router.push("/#video-review");
+  router.push("#message-entry");
 };
 </script>

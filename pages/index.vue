@@ -10,7 +10,6 @@ import { useRoute, useRouter } from "vue-router";
 import AppDescription from "~/components/AppDescription.vue";
 import VideoInstructions from "~/components/VideoInstructions.vue";
 import VideoRecording from "~/components/VideoRecording.vue";
-import VideoReview from "~/components/VideoReview.vue";
 import MessageEntry from "~/components/MessageEntry.vue";
 import Preview from "~/components/Preview.vue";
 import Upload from "~/components/Upload.vue";
@@ -23,7 +22,6 @@ const componentsMap = {
   "": AppDescription,
   "#video-instructions": VideoInstructions,
   "#video-recording": VideoRecording,
-  "#video-review": VideoReview,
   "#message-entry": MessageEntry,
   "#preview": Preview,
   "#upload": Upload,

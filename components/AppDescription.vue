@@ -9,9 +9,16 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 
+const giftStore = useGiftStore()
 const router = useRouter();
+const route = useRoute()
+
+onMounted(() => {
+  const query = route.query['documentId'] as string
+  giftStore.setDocumentId(query)
+})
 
 const goToNextStep = () => {
-  router.push("/#video-instructions");
+  router.push("#video-instructions");
 };
 </script>

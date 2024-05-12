@@ -37,25 +37,33 @@ export default defineNuxtPlugin((nuxtApp) => {
   const storage: FirebaseStorage = getStorage(app);
 
   const uploadData = async (
-    videoFile: Blob,
-    giftTitle: string,
+    documentId: string,
+    videoBlob: Blob,
+    title: string,
     fromName: string,
     toName: string,
-    message: string,
-    documentId: string
+    message: string
   ): Promise<void> => {
-    console.log("uploadData");
     try {
+      console.log('upload')
+      console.log(documentId)
+      console.log(videoBlob)
+      console.log(title)
+      console.log(fromName)
+      console.log(toName)
+      console.log(message)
       // Storageに動画をアップロード
       const fileRef = storageRef(storage, `videos/${documentId}`);
-      const snapshot = await uploadBytes(fileRef, videoFile);
+      console.log(fileRef)
+      const snapshot = await uploadBytes(fileRef, videoBlob);
       const videoUrl: string = await getDownloadURL(snapshot.ref);
+      console.log(videoUrl)
 
       // Firestoreにデータをセット
       const docRef = doc(db, "gifts", documentId);
       await setDoc(docRef, {
         videoUrl,
-        giftTitle,
+        title,
         fromName,
         toName,
         message,
