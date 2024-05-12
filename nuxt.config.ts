@@ -3,16 +3,14 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      firebaseApiKey: process.env.NUXT_FIREBASE_APIKEY,
-      firebaseAuthDomain: process.env.NUXT_FIREBASE_AUTHDOMAIN,
-      firebaseProjectId: process.env.NUXT_FIREBASE_PROJECT_ID,
-      firebaseStorageBucket: process.env.NUXT_FIREBASE_STORAGE_BUCKET,
-      firebaseMessagingSenderId: process.env.NUXT_FIREBASE_MESSAGING_SENDER_ID,
-      firebaseAppId: process.env.NUXT_FIREBASE_APP_ID,
-      firebaseMeasurementId: process.env.NUXT_FIREBASE_MEASUREMENTID,
+      firebaseApiKey: "AIzaSyCc6crVDivs24waMJrEVqRnJQP6VHBdjFI",
+      firebaseAuthDomain: "karock-c4638.firebaseapp.com",
+      firebaseProjectId: "karock-c4638",
+      firebaseStorageBucket: "karock-c4638.appspot.com",
+      firebaseMessagingSenderId: "798342812233",
+      firebaseAppId: "1:798342812233:web:2fd9e988a560ca822c6598",
+      firebaseMeasurementId: "G-52W5Q8RB55",
     },
   },
-  modules: [
-    "@pinia/nuxt",
-  ],
+  modules: ["@pinia/nuxt"],
 });
