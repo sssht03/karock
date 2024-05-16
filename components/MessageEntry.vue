@@ -1,7 +1,7 @@
 <template>
   <div id="message-entry">
     <h1>Message Entry</h1>
-    <video :src="giftStore.videoUrl" autoplay loop></video>
+    <video :src="giftStore.videoUrl" autoplay playsinline></video>
     <form @submit.prevent="submitForm">
       <div>
         <label for="title" class="sr-only">Title:</label>
@@ -34,14 +34,25 @@ const toName = ref("");
 const message = ref("");
 
 function submitForm() {
-  giftStore.setMessages(
-    title.value,
-    fromName.value,
-    toName.value,
-    message.value
-  );
+  if (
+    title.value != "" &&
+    fromName.value != "" &&
+    toName.value != "" &&
+    message.value != ""
+  ) {
+    giftStore.setMessages(
+      title.value,
+      fromName.value,
+      toName.value,
+      message.value
+    );
 
-  router.push("#preview");
+    const documentId = useRoute().query["documentId"] as string;
+    router.push({ hash: "#preview", query: { documentId: documentId } });
+  } else {
+    alert("全部の項目埋めてね！");
+    throw Error("たりないよ");
+  }
 }
 </script>
 

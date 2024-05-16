@@ -4,7 +4,7 @@
     <template v-else>
       <h1>アプリの説明</h1>
       <p>このアプリは〜〜〜〜です</p>
-      <button @click="goToNextStep">次へ</button>
+      <button @click="goToNextStep()">次へ</button>
     </template>
   </div>
 </template>
@@ -13,29 +13,27 @@
 const giftStore = useGiftStore();
 const router = useRouter();
 const route = useRoute();
-
 const { $getStoreData } = useNuxtApp();
-
 const isLoading = ref(false);
+const documentId = ref();
 
 onMounted(async () => {
   isLoading.value = true;
-  const documentId = route.query["documentId"] as string;
+  documentId.value = route.query["documentId"] as string;
 
-  if (documentId === undefined) {
+  if (documentId.value === undefined) {
     alert("NFCタグに不具合が起きています");
+    showError({ statusCode: 404 });
   }
 
-  giftStore.setDocumentId(documentId);
-
-  const hasDocument = await confirmDocumentExists(documentId);
+  const hasDocument = await checkDocumentExists(documentId.value);
   if (hasDocument && hasDocument === true) {
-    router.push({ hash: "#viewer", query: { documentId: documentId } });
+    router.push({ hash: "#viewer", query: { documentId: documentId.value } });
   }
   isLoading.value = false;
 });
 
-async function confirmDocumentExists(
+async function checkDocumentExists(
   documentId: string
 ): Promise<boolean | void> {
   try {
@@ -54,6 +52,9 @@ async function confirmDocumentExists(
 }
 
 const goToNextStep = () => {
-  router.push("#video-instructions");
+  router.push({
+    hash: "#video-instructions",
+    query: { documentId: documentId.value },
+  });
 };
 </script>

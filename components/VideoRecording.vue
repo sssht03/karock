@@ -11,7 +11,7 @@
       autoplay
       muted
     ></video>
-    <video v-else :src="recordedVideoUrl" autoplay loop></video>
+    <video v-else :src="recordedVideoUrl" playsinline controls></video>
 
     <template v-if="!isRecording && recordedVideoUrl">
       <button @click="goToNextStep">これでOK</button>
@@ -59,10 +59,10 @@ function setupMediaRecorder(stream: MediaStream) {
   };
 
   mediaRecorder.onstop = () => {
-    const blob = new Blob(recordedChunks, { type: "video/webm" });
+    const blob = new Blob(recordedChunks, { type: "video/mp4" });
     recordedVideoUrl.value = URL.createObjectURL(blob);
     giftStore.setVideo(blob, recordedVideoUrl.value);
-    isRecording.value = false; // Ensure recording state is updated when stopped
+    isRecording.value = false;
   };
 }
 
@@ -98,6 +98,7 @@ function recordAgain() {
 }
 
 const goToNextStep = () => {
-  router.push("#message-entry");
+  const documentId = useRoute().query["documentId"] as string;
+  router.push({ hash: "#message-entry", query: { documentId: documentId } });
 };
 </script>

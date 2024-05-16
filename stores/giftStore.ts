@@ -1,5 +1,4 @@
 interface GiftState {
-  documentId: string;
   videoBlob: Blob | null;
   videoUrl: string;
   title: string;
@@ -10,7 +9,6 @@ interface GiftState {
 
 export const useGiftStore = defineStore("gift", {
   state: (): GiftState => ({
-    documentId: "",
     videoBlob: null,
     videoUrl: "",
     title: "",
@@ -19,9 +17,6 @@ export const useGiftStore = defineStore("gift", {
     message: "",
   }),
   actions: {
-    setDocumentId(id: string) {
-      this.documentId = id;
-    },
     setVideo(blob: Blob | null, url: string) {
       this.videoBlob = blob;
       this.videoUrl = url;
@@ -38,7 +33,6 @@ export const useGiftStore = defineStore("gift", {
       this.message = message;
     },
     resetStore() {
-      this.documentId = "";
       this.videoBlob = null;
       this.title = "";
       this.fromName = "";

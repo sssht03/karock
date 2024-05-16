@@ -11,6 +11,7 @@
 const router = useRouter();
 
 const goToNextStep = () => {
-  router.push("#video-recording");
+  const documentId = useRoute().query["documentId"] as string
+  router.push({ hash: "#video-recording", query: { documentId: documentId } });
 };
 </script>

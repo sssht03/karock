@@ -9,6 +9,7 @@
 const router = useRouter();
 
 const goToNext = () => {
-  router.push("/");
+  const documentId = useRoute().query["documentId"] as string
+  router.push({ hash: "/", query: { documentId: documentId } });
 };
 </script>

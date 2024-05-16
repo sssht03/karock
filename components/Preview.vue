@@ -1,7 +1,7 @@
 <template>
   <div id="preview">
     <h1>Preview</h1>
-    <video :src="giftStore.videoUrl" autoplay loop></video>
+    <video :src="giftStore.videoUrl" playsinline autoplay loop></video>
     <p>{{ giftStore.title }}</p>
     <p>{{ giftStore.fromName }}</p>
     <p>{{ giftStore.toName }}</p>
@@ -15,6 +15,7 @@ const giftStore = useGiftStore();
 const router = useRouter();
 
 function goToNextStep() {
-  router.push("#upload");
+  const documentId = useRoute().query["documentId"] as string
+  router.push({ hash: "#upload", query: { documentId: documentId } });
 }
 </script>
