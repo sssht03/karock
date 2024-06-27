@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="currentComponent" class="container"/>
+    <component :is="currentComponent" class="page" />
   </div>
 </template>
 
@@ -27,7 +27,7 @@ const componentsMap = {
   "#preview": Preview,
   "#upload": Upload,
   "#completion": Completion,
-  "#viewer": Viewer
+  "#viewer": Viewer,
 };
 
 const currentComponent = computed(() => {

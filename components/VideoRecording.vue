@@ -1,42 +1,36 @@
 <template>
-  <section class="video-recording">
-    <h1>Recording</h1>
+  <section class="container">
+    <div class="videoContainer">
+      <video
+        v-if="recordedVideoUrl === null"
+        class="videoRecording"
+        ref="videoElement"
+        autoplay
+        muted
+        playsInline
+        aria-label="Live camera feed"
+      ></video>
 
-    <div
-        v-if="isLoading"
-        class="loading-screen"
-        role="alert"
-        aria-live="assertive"
-      >
-        <p>Loading...</p>
-      </div>
-
-    <video
-      v-if="recordedVideoUrl === null"
-      ref="videoElement"
-      autoplay
-      muted
-      playsInline
-      aria-label="Live camera feed"
-    ></video>
-
-    <video
-      v-if="recordedVideoUrl !== null"
-      :src="recordedVideoUrl"
-      autoplay
-      muted
-      playsInline
-      aria-label="Recorded video preview"
-    ></video>
-
-    <div v-if="recordedVideoUrl !== null" class="controls">
-      <button @click="goToNextStep">これでOK</button>
-      <button @click="recordAgain">撮り直す</button>
+      <video
+        v-if="recordedVideoUrl !== null"
+        class="videoPreview"
+        :src="recordedVideoUrl"
+        autoplay
+        playsInline
+        aria-label="Recorded video preview"
+      ></video>
+    </div>
+    <div class="controls">
+      <button @click="recordAgain" class="retakeButton">撮り直す</button>
+      <button @click="goToNextStep" class="confirmButton">これでOK</button>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import { useRouter, useRoute } from "vue-router";
+
 const giftStore = useGiftStore();
 const router = useRouter();
 
@@ -75,8 +69,10 @@ async function getMediaStream(): Promise<MediaStream> {
     throw new Error("getUserMedia is not supported in this browser");
   }
   return await navigator.mediaDevices.getUserMedia({
-    video: true,
-    // audio: true,
+    video: {
+      facingMode: "user",
+    },
+    audio: true,
   });
 }
 
@@ -90,6 +86,7 @@ function setupVideoStream(stream: MediaStream) {
 }
 
 function startMediaRecorder(stream: MediaStream) {
+  recordedChunks = [];
   mediaRecorder = new MediaRecorder(stream);
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.onstop = previewRecording;
@@ -121,7 +118,8 @@ function previewRecording() {
 function recordAgain() {
   recordedVideoUrl.value = null;
   giftStore.setVideo(null, "");
-  isLoading.value = true
+  recordedChunks = [];
+  isLoading.value = true;
   initializeRecording();
 }
 
@@ -136,3 +134,53 @@ function handleError(error: Error) {
   isLoading.value = false;
 }
 </script>
+
+<style scoped>
+.container {
+  background-color: #1a1a1a;
+  position: relative;
+  height: 100svh;
+}
+
+.videoContainer {
+  height: calc(100svh - 72px);
+  border-radius: 24px;
+}
+
+.videoContainer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.controls {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 72px; /* 固定された高さ */
+  padding: 8px;
+  gap: 8px;
+  background-color: #1a1a1a;
+}
+
+.controls button {
+  height: 48px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.retakeButton {
+  border: solid 1px #fff;
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+.confirmButton {
+  color: #1a1a1a;
+  background-color: #fff;
+}
+</style>

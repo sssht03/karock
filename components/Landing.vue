@@ -1,5 +1,5 @@
 <template>
-  <div id="app-desctiption" class="content">
+  <div id="app-desctiption" class="container">
     <p class="title">yomi yomi</p>
   </div>
 </template>
@@ -20,15 +20,15 @@ onMounted(async () => {
   if (documentId.value === undefined) {
     // alert("NFCタグに不具合が起きています");
     // showError({ statusCode: 404 });
-    documentId.value = 'test1234-aaaa-bbbb-cccc-test5678test'
+    documentId.value = "test1234-aaaa-bbbb-cccc-test5678test";
   }
 
   // const hasDocument = await checkDocumentExists(documentId.value);
   // if (hasDocument && hasDocument === true) {
   //   router.push({ hash: "#viewer", query: { documentId: documentId.value } });
   // }
-  // await delay(3000)
-  // goToNextStep()
+  await delay(2000);
+  goToNextStep();
   isLoading.value = false;
 });
 
@@ -58,8 +58,17 @@ const goToNextStep = () => {
 };
 </script>
 
-<style>
+<style scoped>
+.container {
+  background-color: #1A1A1A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .title {
-  font-size: 64px;
+  font-size: 56px;
+  font-family: "Montserrat";
+  color: #fff;
 }
 </style>

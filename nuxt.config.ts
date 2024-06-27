@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  css: ['~/assets/main.css'],
   runtimeConfig: {
     public: {
       firebaseApiKey: "AIzaSyCc6crVDivs24waMJrEVqRnJQP6VHBdjFI",
@@ -13,5 +14,12 @@ export default defineNuxtConfig({
     },
   },
   modules: ["@pinia/nuxt", "@nuxtjs/google-fonts"],
-  css: ['~/assets/main.css'],
+  googleFonts: {
+    families: {
+      "Noto Sans JP": true,
+      "Montserrat": {
+        wght: [900]
+      }
+    }
+  }
 });
