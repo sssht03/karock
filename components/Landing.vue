@@ -1,11 +1,6 @@
 <template>
-  <div id="app-desctiption">
-    <template v-if="isLoading"></template>
-    <template v-else>
-      <h1>アプリの説明</h1>
-      <p>このアプリは〜〜〜〜です</p>
-      <button @click="goToNextStep()">次へ</button>
-    </template>
+  <div id="app-desctiption" class="content">
+    <p class="title">yomi yomi</p>
   </div>
 </template>
 
@@ -14,6 +9,7 @@ const giftStore = useGiftStore();
 const router = useRouter();
 const route = useRoute();
 const { $getStoreData } = useNuxtApp();
+
 const isLoading = ref(false);
 const documentId = ref();
 
@@ -27,10 +23,12 @@ onMounted(async () => {
     documentId.value = 'test1234-aaaa-bbbb-cccc-test5678test'
   }
 
-  const hasDocument = await checkDocumentExists(documentId.value);
-  if (hasDocument && hasDocument === true) {
-    router.push({ hash: "#viewer", query: { documentId: documentId.value } });
-  }
+  // const hasDocument = await checkDocumentExists(documentId.value);
+  // if (hasDocument && hasDocument === true) {
+  //   router.push({ hash: "#viewer", query: { documentId: documentId.value } });
+  // }
+  // await delay(3000)
+  // goToNextStep()
   isLoading.value = false;
 });
 
@@ -59,3 +57,9 @@ const goToNextStep = () => {
   });
 };
 </script>
+
+<style>
+.title {
+  font-size: 64px;
+}
+</style>

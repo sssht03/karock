@@ -1,13 +1,13 @@
 <template>
   <div>
-    <component :is="currentComponent" />
+    <component :is="currentComponent" class="container"/>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch } from "vue";
 import { useRoute } from "vue-router";
-import AppDescription from "~/components/AppDescription.vue";
+import Landing from "~/components/Landing.vue";
 import VideoInstructions from "~/components/VideoInstructions.vue";
 import VideoRecording from "~/components/VideoRecording.vue";
 import MessageEntry from "~/components/MessageEntry.vue";
@@ -20,7 +20,7 @@ const route = useRoute();
 const hash = ref("");
 
 const componentsMap = {
-  "": AppDescription,
+  "": Landing,
   "#video-instructions": VideoInstructions,
   "#video-recording": VideoRecording,
   "#message-entry": MessageEntry,
@@ -31,7 +31,7 @@ const componentsMap = {
 };
 
 const currentComponent = computed(() => {
-  return componentsMap[hash.value] || AppDescription;
+  return componentsMap[hash.value] || Landing;
 });
 
 onMounted(() => {
