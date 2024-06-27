@@ -12,6 +12,6 @@ export default defineNuxtConfig({
       firebaseMeasurementId: "G-52W5Q8RB55",
     },
   },
-  modules: ["@pinia/nuxt"],
+  modules: ["@pinia/nuxt", "@nuxtjs/google-fonts"],
   css: ['~/assets/main.css'],
 });
