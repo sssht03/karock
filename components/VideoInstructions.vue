@@ -60,6 +60,7 @@ const navigateToNextStep = () => {
   height: 56px;
   width: 300px;
   padding: 16px;
+  border: none;
   border-radius: 8px;
   color: #fff;
   font-size: 18px;

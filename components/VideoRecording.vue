@@ -420,6 +420,7 @@ function handleError(error: Error) {
 }
 
 .confirmButton {
+  border: none;
   color: #1a1a1a;
   background-color: #fff;
 }

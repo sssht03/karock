@@ -16,7 +16,9 @@ export default defineNuxtConfig({
   modules: ["@pinia/nuxt", "@nuxtjs/google-fonts"],
   googleFonts: {
     families: {
-      "Noto Sans JP": true,
+      "Noto Sans JP": {
+        wght: [600, 900]
+      },
       "Montserrat": {
         wght: [600, 900]
       }
