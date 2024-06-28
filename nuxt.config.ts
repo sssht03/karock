@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     families: {
       "Noto Sans JP": true,
       "Montserrat": {
-        wght: [900]
+        wght: [600, 900]
       }
     }
   }

@@ -24,14 +24,14 @@ async function startUpload() {
   isUploading.value = true;
 
   const documentId = useRoute().query["documentId"] as string;
-  const { videoBlob, title, fromName, toName, message } = giftStore;
+  const { videoBlob, fromName, toName, date } = giftStore;
   
   if (videoBlob === null) {
     throw Error('ビデオがうまく撮れてません');
   }
 
   try {
-    await $uploadData(documentId, videoBlob, title, fromName, toName, message);
+    await $uploadData(documentId, videoBlob, fromName, toName, date);
     router.push({ hash: "#completion", query: { documentId: documentId } });
   } catch (error) {
     uploadError.value = true;

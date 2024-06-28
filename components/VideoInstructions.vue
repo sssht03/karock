@@ -15,9 +15,10 @@
 
 <script setup lang="ts">
 const router = useRouter();
+const route = useRoute();
 
 const goToNextStep = () => {
-  const documentId = useRoute().query["documentId"] as string;
+  const documentId = route.query["documentId"] as string;
   router.push({ hash: "#video-recording", query: { documentId: documentId } });
 };
 </script>

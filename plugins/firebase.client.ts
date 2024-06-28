@@ -40,10 +40,9 @@ export default defineNuxtPlugin((nuxtApp) => {
   const uploadData = async (
     documentId: string,
     videoBlob: Blob,
-    title: string,
     fromName: string,
     toName: string,
-    message: string
+    date: string
   ): Promise<void> => {
     try {
       // Storageに動画をアップロード
@@ -55,10 +54,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       const docRef = doc(db, "gifts", documentId);
       await setDoc(docRef, {
         videoUrl,
-        title,
         fromName,
         toName,
-        message,
+        date,
       });
       alert("データが正常にアップロードされました");
     } catch (error) {

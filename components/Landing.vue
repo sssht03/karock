@@ -40,9 +40,9 @@ async function checkDocumentExists(
     if (data !== null) {
       giftStore.setVideo(null, data.videoUrl);
       giftStore.setMessages(
-        data.title,
         data.fromName,
         data.toName,
+        data.date,
         data.message
       );
       return true;
@@ -60,7 +60,7 @@ const goToNextStep = () => {
 
 <style scoped>
 .container {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,6 +69,7 @@ const goToNextStep = () => {
 .title {
   font-size: 56px;
   font-family: "Montserrat";
+  font-weight: 900;
   color: #fff;
 }
 </style>

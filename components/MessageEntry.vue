@@ -1,26 +1,21 @@
 <template>
-  <div id="message-entry">
-    <h1>Message Entry</h1>
-    <video :src="giftStore.videoUrl" autoplay playsinline></video>
-    <form @submit.prevent="submitForm">
+  <div id="message-entry" class="container">
+    <div class="inputContainer">
       <div>
-        <label for="title" class="sr-only">Title:</label>
-        <input id="title" v-model="title" type="text" />
+        <label for="fromName" class="label">From</label>
+        <input id="fromName" v-model="fromName" type="text" class="" />
       </div>
       <div>
-        <label for="fromName" class="sr-only">From Name:</label>
-        <input id="fromName" v-model="fromName" type="text" />
-      </div>
-      <div>
-        <label for="toName" class="sr-only">To Name:</label>
+        <label for="toName" class="label">To</label>
         <input id="toName" v-model="toName" type="text" />
       </div>
       <div>
-        <label for="message" class="sr-only">Message:</label>
-        <textarea id="message" v-model="message"></textarea>
+        <p>date</p>
       </div>
-      <button type="submit">プレビューへ</button>
-    </form>
+    </div>
+    <div class="buttonContainer">
+      <button @click=goToNext class="nextButton">プレビューへ</button>
+    </div>
   </div>
 </template>
 
@@ -28,22 +23,22 @@
 const router = useRouter();
 const giftStore = useGiftStore();
 
-const title = ref("");
 const fromName = ref("");
 const toName = ref("");
+const date = ref("");
 const message = ref("");
 
-function submitForm() {
+function goToNext() {
   if (
-    title.value != "" &&
     fromName.value != "" &&
     toName.value != "" &&
+    date.value != "" &&
     message.value != ""
   ) {
     giftStore.setMessages(
-      title.value,
       fromName.value,
       toName.value,
+      date.value,
       message.value
     );
 
@@ -56,15 +51,31 @@ function submitForm() {
 }
 </script>
 
-<style>
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  position: fixed;
+  bottom: 24px;
+}
+
+.nextButton {
+  height: 56px;
+  width: 300px;
+  padding: 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #1a1a1a;
 }
 </style>
