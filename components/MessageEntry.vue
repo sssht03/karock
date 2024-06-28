@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="buttonContainer">
-      <button @click="navigateToNextStep" class="nextButton">
+      <button @click="navigateToNextStep" class="confirmButton">
         プレビューへ
       </button>
     </div>
@@ -173,7 +173,7 @@ function navigateToNextStep() {
   width: 100%;
 }
 
-.nextButton {
+.confirmButton {
   height: 56px;
   width: 300px;
   padding: 16px;

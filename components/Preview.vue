@@ -13,7 +13,9 @@
       <p class="date">{{ giftStore.date }}</p>
     </div>
 
-    <button @click="navigateToNextStep">これで保存する</button>
+    <div class="controls">
+      <button @click="navigateToNextStep" class="confirmButton">これで保存する</button>
+    </div>
   </div>
 </template>
 
@@ -32,6 +34,8 @@ function navigateToNextStep() {
   background-color: #1a1a1a;
   height: 100svh;
   font-family: "Montserrat";
+  display: flex;
+  flex-direction: column;
 }
 
 .videoContainer {
@@ -76,5 +80,24 @@ function navigateToNextStep() {
   font-size: 1.5rem;
   /* transform-origin: right top; */
   /* transform: rotate(-90deg); */
+}
+
+.controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.confirmButton {
+  height: 56px;
+  padding: 16px 48px;
+  border: none;
+  border-radius: 8px;
+  color: #1a1a1a;
+  background-color: #fff;
+  font-size: 18px;
+  font-family: "Noto Sans JP", sans-serif;
 }
 </style>
