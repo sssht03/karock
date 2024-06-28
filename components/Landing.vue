@@ -1,7 +1,9 @@
 <template>
-  <div id="app-desctiption" class="container">
-    <p class="title">yomi yomi</p>
-  </div>
+  <transition name="fade">
+    <div id="app-description" class="container">
+      <p class="title">yomi yomi</p>
+    </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
@@ -10,7 +12,7 @@ const router = useRouter();
 const route = useRoute();
 const { $getStoreData } = useNuxtApp();
 
-const isLoading = ref(false);
+const isLoading = ref(true);
 const documentId = ref();
 
 onMounted(async () => {
@@ -27,9 +29,10 @@ onMounted(async () => {
   // if (hasDocument && hasDocument === true) {
   //   router.push({ hash: "#viewer", query: { documentId: documentId.value } });
   // }
-  await delay(2000);
-  goToNextStep();
+  await delay(3000);
   isLoading.value = false;
+
+  navigateToNextStep();
 });
 
 async function checkDocumentExists(
@@ -50,7 +53,7 @@ async function checkDocumentExists(
   } catch (error) {}
 }
 
-const goToNextStep = () => {
+const navigateToNextStep = () => {
   router.push({
     hash: "#video-instructions",
     query: { documentId: documentId.value },
@@ -66,6 +69,7 @@ const goToNextStep = () => {
   align-items: center;
   text-align: center;
 }
+
 .title {
   font-size: 56px;
   font-family: "Montserrat";

@@ -6,7 +6,7 @@
     <p>{{ giftStore.fromName }}</p>
     <p>{{ giftStore.toName }}</p>
     <p>{{ giftStore.message }}</p>
-    <button @click="goToNextStep">これで保存する</button>
+    <button @click="navigateToNextStep">これで保存する</button>
   </div>
 </template>
 
@@ -14,7 +14,7 @@
 const giftStore = useGiftStore();
 const router = useRouter();
 
-function goToNextStep() {
+function navigateToNextStep() {
   const documentId = useRoute().query["documentId"] as string
   router.push({ hash: "#upload", query: { documentId: documentId } });
 }

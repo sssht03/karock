@@ -50,7 +50,7 @@
 
     <div v-if="recordedVideoUrl !== null" class="controls">
       <button @click="recordAgain" class="retakeButton">撮り直す</button>
-      <button @click="goToNextStep" class="confirmButton">これでOK</button>
+      <button @click="navigateToNextStep" class="confirmButton">これでOK</button>
     </div>
   </section>
 </template>
@@ -269,7 +269,7 @@ function startCircularProgressBar(duration: number): void {
 //   animationFrameId = requestAnimationFrame(draw);
 // }
 
-function goToNextStep() {
+function navigateToNextStep() {
   const documentId = route.query["documentId"] as string;
   router.push({ hash: "#message-entry", query: { documentId: documentId } });
 }

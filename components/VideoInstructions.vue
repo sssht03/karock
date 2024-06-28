@@ -7,7 +7,7 @@
       </div>
       <div class="buttonContainer">
         <p class="guideText">\ 用意はOK? /</p>
-        <button @click="goToNextStep" class="nextButton">撮影する</button>
+        <button @click="navigateToNextStep" class="nextButton">撮影する</button>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@
 const router = useRouter();
 const route = useRoute();
 
-const goToNextStep = () => {
+const navigateToNextStep = () => {
   const documentId = route.query["documentId"] as string;
   router.push({ hash: "#video-recording", query: { documentId: documentId } });
 };
