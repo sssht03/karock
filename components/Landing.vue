@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div id="app-description" class="container">
+    <div v-if="showTitle" id="app-description" class="container">
       <p class="title">yomi yomi</p>
     </div>
   </transition>
@@ -12,6 +12,7 @@ const router = useRouter();
 const route = useRoute();
 const { $getStoreData } = useNuxtApp();
 
+const showTitle = ref(true)
 const isLoading = ref(true);
 const documentId = ref();
 
@@ -29,9 +30,11 @@ onMounted(async () => {
   // if (hasDocument && hasDocument === true) {
   //   router.push({ hash: "#viewer", query: { documentId: documentId.value } });
   // }
-  await delay(3000);
+  await delay(2500);
   isLoading.value = false;
 
+  showTitle.value = false;
+  await delay(500);
   navigateToNextStep();
 });
 
@@ -75,5 +78,15 @@ const navigateToNextStep = () => {
   font-family: "Montserrat";
   font-weight: 900;
   color: #fff;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
