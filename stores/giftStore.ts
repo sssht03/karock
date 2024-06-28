@@ -30,6 +30,7 @@ export const useGiftStore = defineStore("gift", {
       this.fromName = fromName;
       this.toName = toName;
       this.date = date;
+      this.message = message;
     },
     resetStore() {
       this.videoBlob = null;

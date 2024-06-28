@@ -29,7 +29,9 @@
       </div>
     </div>
     <div class="buttonContainer">
-      <button @click="navigateToNextStep" class="nextButton">プレビューへ</button>
+      <button @click="navigateToNextStep" class="nextButton">
+        プレビューへ
+      </button>
     </div>
   </div>
 </template>
@@ -44,14 +46,14 @@ const date = ref("");
 const message = ref("");
 
 const messages = ref([
-  "Happy BirthDay",
-  "Thank you",
-  "I LOVE you",
-  "Congratulations",
+  "Happy BirthDay!",
+  "Thank you!",
+  "I Love you",
+  "Congratulations!",
 ]);
 
 function navigateToNextStep() {
-  date.value = getFormattedDate()
+  date.value = getFormattedDate();
   if (
     fromName.value != "" &&
     toName.value != "" &&
@@ -153,7 +155,7 @@ function navigateToNextStep() {
 }
 
 .custom-checkbox:checked::after {
-  content: '';
+  content: "";
   background-color: white;
 }
 
