@@ -5,17 +5,31 @@
       <p>メッセージを選択しよう！</p>
     </div>
     <div class="inputContainer">
+      <p class="inputDescription">誰から誰に送る?</p>
       <div class="formGroup">
         <label for="fromName" class="formLabel">From</label>
         <input id="fromName" v-model="fromName" type="text" class="formInput" />
       </div>
       <div class="formGroup">
         <label for="toName" class="formLabel">To</label>
-        <input id="toName" v-model="toName" type="text" class="formInput"/>
+        <input id="toName" v-model="toName" type="text" class="formInput" />
+      </div>
+    </div>
+    <div class="messageContainer">
+      <p class="messageDescription">どんなメッセージ？</p>
+      <div v-for="msg in messages" :key="msg" class="messageOption">
+        <input
+          type="radio"
+          :id="msg"
+          :value="msg"
+          v-model="message"
+          class="custom-checkbox"
+        />
+        <label :for="msg" class="messageLabel">{{ msg }}</label>
       </div>
     </div>
     <div class="buttonContainer">
-      <button @click="goToNext" class="nextButton">プレビューへ</button>
+      <button @click="navigateToNextStep" class="nextButton">プレビューへ</button>
     </div>
   </div>
 </template>
@@ -29,7 +43,15 @@ const toName = ref("");
 const date = ref("");
 const message = ref("");
 
-function goToNext() {
+const messages = ref([
+  "Happy BirthDay",
+  "Thank you",
+  "I LOVE you",
+  "Congratulations",
+]);
+
+function navigateToNextStep() {
+  date.value = getFormattedDate()
   if (
     fromName.value != "" &&
     toName.value != "" &&
@@ -65,6 +87,11 @@ function goToNext() {
   margin: 36px 0 0 24px;
 }
 
+.inputDescription,
+.messageDescription {
+  font-size: 16px;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -80,6 +107,7 @@ function goToNext() {
 }
 
 .formLabel {
+  font-size: 16px;
   width: 56px;
   margin-right: 8px;
 }
@@ -95,7 +123,42 @@ function goToNext() {
 }
 
 .formInput:focus {
-  outline: 2px #1a1a1a;
+  outline: none;
+}
+
+.messageContainer {
+  margin: 36px 0 0 24px;
+}
+
+.messageOption {
+  display: flex;
+  align-items: center;
+  margin: 8px 0px;
+}
+
+.custom-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+  position: relative;
+  appearance: none;
+}
+
+.custom-checkbox:checked {
+  background-color: #1a1a1a;
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  background-color: white;
+}
+
+.messageLabel {
+  font-size: 20px;
 }
 
 .buttonContainer {
