@@ -2,6 +2,10 @@
   <transition name="fade">
     <div v-if="showTitle" id="app-description" class="container">
       <p class="title">yomi yomi</p>
+      <div class="errorText">
+        <p>ごめんなさい！</p>
+        <p>NFC タグに不具合があります🙇</p>
+      </div>
     </div>
   </transition>
 </template>
@@ -21,10 +25,10 @@ onMounted(async () => {
   documentId.value = route.query["documentId"] as string;
 
   if (documentId.value === undefined) {
-    // alert("NFCタグに不具合が起きています");
-    showError({ statusCode: 404 });
-    // documentId.value = "test1234-aaaa-bbbb-cccc-test5678test";
+    alert("NFCタグに不具合が起きています");
+    return;
   }
+
   const hasDocument = await checkDocumentExists(documentId.value);
   await delay(2000);
   if (hasDocument && hasDocument === true) {
@@ -67,9 +71,16 @@ const navigateToNextStep = () => {
 .container {
   background-color: #1a1a1a;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.errorText {
+  margin-top: 8px;
+  color: #fff;
+  font-size: 1.2rem;
 }
 
 .title {
