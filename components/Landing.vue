@@ -2,7 +2,7 @@
   <transition name="fade">
     <div v-if="showTitle" id="app-description" class="container">
       <p class="title">yomi yomi</p>
-      <div class="errorText">
+      <div v-if="isError" class="errorText">
         <p>ごめんなさい！</p>
         <p>NFC タグに不具合があります🙇</p>
       </div>
@@ -18,6 +18,7 @@ const { $getStoreData } = useNuxtApp();
 
 const showTitle = ref(true);
 const isLoading = ref(true);
+const isError = ref(false);
 const documentId = ref();
 
 onMounted(async () => {
@@ -26,6 +27,7 @@ onMounted(async () => {
 
   if (documentId.value === undefined) {
     alert("NFCタグに不具合が起きています");
+    isError.value = true;
     return;
   }
 
