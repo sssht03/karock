@@ -12,7 +12,7 @@ const router = useRouter();
 const route = useRoute();
 const { $getStoreData } = useNuxtApp();
 
-const showTitle = ref(true)
+const showTitle = ref(true);
 const isLoading = ref(true);
 const documentId = ref();
 
@@ -21,21 +21,20 @@ onMounted(async () => {
   documentId.value = route.query["documentId"] as string;
 
   if (documentId.value === undefined) {
-    alert("NFCタグに不具合が起きています");
+    // alert("NFCタグに不具合が起きています");
     showError({ statusCode: 404 });
     // documentId.value = "test1234-aaaa-bbbb-cccc-test5678test";
   }
-
-  // const hasDocument = await checkDocumentExists(documentId.value);
-  // if (hasDocument && hasDocument === true) {
-  //   router.push({ hash: "#viewer", query: { documentId: documentId.value } });
-  // }
-  await delay(2500);
-  isLoading.value = false;
-
-  showTitle.value = false;
-  await delay(500);
-  navigateToNextStep();
+  const hasDocument = await checkDocumentExists(documentId.value);
+  await delay(2000);
+  if (hasDocument && hasDocument === true) {
+    showTitle.value = false;
+    router.push({ hash: "#viewer", query: { documentId: documentId.value } });
+  } else {
+    isLoading.value = false;
+    showTitle.value = false;
+    navigateToNextStep();
+  }
 });
 
 async function checkDocumentExists(

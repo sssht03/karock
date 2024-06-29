@@ -368,7 +368,7 @@ function handleError(error: Error) {
 
 .progressBar {
   fill: none;
-  stroke: #4caf50;
+  stroke: #0066be;
   stroke-width: 4;
   stroke-dasharray: 100, 100;
   stroke-dashoffset: 100;

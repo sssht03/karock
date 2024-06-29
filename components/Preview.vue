@@ -181,7 +181,7 @@ async function startUpload() {
 
 .loader {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #0066be;
+  border-top: 4px solid #1a1a1a;
   border-radius: 50%;
   width: 48px;
   height: 48px;
