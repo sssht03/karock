@@ -25,7 +25,7 @@
     <div v-if="isUploading" class="modal">
       <div class="uploadModal">
         <div class="loader"></div>
-        <p>Uploading</p>
+        <p>保存中...</p>
       </div>
     </div>
   </div>

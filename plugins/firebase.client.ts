@@ -59,7 +59,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         date,
         message
       });
-      alert("データが正常にアップロードされました");
     } catch (error) {
       alert("アップロード中にエラーが発生しました: ");
       console.log("ERROR: ", error);
