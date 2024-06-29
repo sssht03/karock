@@ -57,10 +57,12 @@ async function startUpload() {
     await $uploadData(documentId, videoBlob, fromName, toName, date, message);
   } catch (error) {
     uploadError.value = true;
-    return
+    return;
   } finally {
-    isUploading.value = false;
-    router.push({ hash: "#completion", query: { documentId: documentId } });
+    if (uploadError.value === false) {
+      isUploading.value = false;
+      router.push({ hash: "#completion", query: { documentId: documentId } });
+    }
   }
 }
 </script>
