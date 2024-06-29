@@ -5,7 +5,6 @@
         <video
           :src="giftStore.videoUrl"
           playsinline
-          autoplay
           loop
           class="videoPreview"
         ></video>

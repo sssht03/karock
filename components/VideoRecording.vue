@@ -141,7 +141,7 @@ function setupVideoStream(stream: MediaStream) {
 
 function startMediaRecorder(stream: MediaStream) {
   recordedChunks = [];
-  mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
+  mediaRecorder = new MediaRecorder(stream);
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.onstop = previewRecording;
   mediaRecorder.start();
