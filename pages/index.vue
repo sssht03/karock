@@ -12,7 +12,6 @@ import VideoInstructions from "~/components/VideoInstructions.vue";
 import VideoRecording from "~/components/VideoRecording.vue";
 import MessageEntry from "~/components/MessageEntry.vue";
 import Preview from "~/components/Preview.vue";
-import Upload from "~/components/Upload.vue";
 import Completion from "~/components/Completion.vue";
 import Viewer from "~/components/Viewer.vue";
 
@@ -25,7 +24,6 @@ const componentsMap = {
   "#video-recording": VideoRecording,
   "#message-entry": MessageEntry,
   "#preview": Preview,
-  "#upload": Upload,
   "#completion": Completion,
   "#viewer": Viewer,
 };

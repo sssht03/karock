@@ -141,7 +141,7 @@ function setupVideoStream(stream: MediaStream) {
 
 function startMediaRecorder(stream: MediaStream) {
   recordedChunks = [];
-  mediaRecorder = new MediaRecorder(stream);
+  mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.onstop = previewRecording;
   mediaRecorder.start();
@@ -168,7 +168,7 @@ function stopRecording() {
 
 function previewRecording() {
   if (!recordedChunks.length) return;
-  const blob = new Blob(recordedChunks, { type: mediaRecorder!.mimeType });
+  const blob = new Blob(recordedChunks, { type: 'video/mp4' });
   recordedVideoUrl.value = URL.createObjectURL(blob);
   giftStore.setVideo(blob, recordedVideoUrl.value);
 }
@@ -194,22 +194,22 @@ function startCircularProgressBar(duration: number): void {
 
     const remainingTime = duration - elapsed;
     const seconds = Math.floor(remainingTime / 1000);
-    const hundredths = Math.floor((remainingTime % 1000) / 10);
+    const tenths = Math.floor((remainingTime % 1000) / 100);
 
     const formattedSeconds = seconds.toString().padStart(2, "0");
-    const formattedHundredths = hundredths.toString().padStart(2, "0");
+    const formattedTenths = tenths.toString();
     const dashOffset = 100 - progress * 100;
 
     if (progressBar) {
       progressBar.style.strokeDashoffset = dashOffset.toString();
     }
 
-    progressText.value = `${formattedSeconds}:${formattedHundredths}`;
+    progressText.value = `${formattedSeconds}:${formattedTenths}`;
 
     if (progress < 1) {
       requestAnimationFrame(updateProgressBar);
     } else {
-      progressText.value = "00:00";
+      progressText.value = "00:0";
     }
   }
 

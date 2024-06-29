@@ -3,7 +3,6 @@ import { getAnalytics, type Analytics } from "firebase/analytics";
 import {
   Firestore,
   doc,
-  documentId,
   getDoc,
   getFirestore,
   setDoc,
@@ -42,11 +41,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     videoBlob: Blob,
     fromName: string,
     toName: string,
-    date: string
+    date: string,
+    message: string
   ): Promise<void> => {
     try {
       // Storageに動画をアップロード
-      const fileRef = storageRef(storage, `videos/${documentId}`);
+      const fileRef = storageRef(storage, `videos/${documentId}.mp4`);
       const snapshot = await uploadBytes(fileRef, videoBlob);
       const videoUrl: string = await getDownloadURL(snapshot.ref);
 
@@ -57,6 +57,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         fromName,
         toName,
         date,
+        message
       });
       alert("データが正常にアップロードされました");
     } catch (error) {

@@ -21,9 +21,9 @@ onMounted(async () => {
   documentId.value = route.query["documentId"] as string;
 
   if (documentId.value === undefined) {
-    // alert("NFCタグに不具合が起きています");
-    // showError({ statusCode: 404 });
-    documentId.value = "test1234-aaaa-bbbb-cccc-test5678test";
+    alert("NFCタグに不具合が起きています");
+    showError({ statusCode: 404 });
+    // documentId.value = "test1234-aaaa-bbbb-cccc-test5678test";
   }
 
   // const hasDocument = await checkDocumentExists(documentId.value);
